@@ -27,4 +27,11 @@ interface Event extends Resetable
      * @return stdClass[]
      */
     public function get_appended_events();
+
+    /**
+     * Returns latest event from event log
+     *
+     * @return mixed
+     */
+    public function get_last_event();
 }

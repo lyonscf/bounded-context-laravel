@@ -93,4 +93,22 @@ class Event implements \BoundedContext\Contracts\Sourced\Log\Event
         static::$appended_events = [];
         return $events;
     }
+
+    /**
+     * Returns latest event from event log
+     *
+     * @return mixed
+     */
+    public function get_last_event()
+    {
+        $event = $this->connection->table($this->log_table)
+            ->orderBy('order', 'DESC')
+            ->first();
+
+        if (!$event) {
+            return null;
+        }
+
+        return $this->snapshot_transformer->fromPopo($event);
+    }
 }
