@@ -10,7 +10,7 @@ class Repository implements \BoundedContext\Contracts\Player\Repository
 {
     private $player_factory;
     private $snapshot_repository;
-    
+
     public function __construct(
         PlayerFactory $player_factory,
         SnapshotRepository $snapshot_repository
@@ -41,10 +41,13 @@ class Repository implements \BoundedContext\Contracts\Player\Repository
     {
         $snapshot = $this->snapshot_repository->get($class_name);
 
-        $active_version = new Integer_(1);
-        if ($snapshot) {
-            $active_version = $snapshot->playerVersion();
-        }
+         // by default, the player version should be 0, not 1
+         // for already existing players at version 1, we will have a snapshot that will tell us the version is 1 and this method will return false
+         // for new players without a snapshot the static method ::version() will return 1 so this method returns true
+         $active_version = new Integer_(0);
+         if ($snapshot) {
+             $active_version = $snapshot->playerVersion();
+         }
 
         $player_class = $class_name->value();
 
