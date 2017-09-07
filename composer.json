@@ -1,32 +1,39 @@
 {
-  "name": "lyonscf/bounded-context-laravel",
-  "description": "A laravel extension for bounded-context.",
+  "name": "dql/sourced-laravel",
+  "description": "A laravel extension for the bounded-context framework.",
   "license": "MIT",
   "require": {
-    "php": ">=5.4.0",
-    "lyonscf/bounded-context": "~0.2"
+    "dql/valueobjects": "~4.1",
+    "php": ">=5.4.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "4.1.*",
-    "mockery/mockery": "dev-master"
+    "phpunit/phpunit": "4.1.*"
   },
   "authors": [
     {
       "name": "Colin Lyons",
-      "email": "clyons@olivemedia.co"
+      "email": "colin@tercet.io"
     },
     {
       "name": "Barry O'Sullivan",
-      "email": "bosullivan@olivemedia.co"
+      "email": "barry@tercet.io"
     },
     {
-      "name": "Kiran Guragai",
-      "email": "kguragai@olivemedia.co"
+        "name": "Kiran Guragai",
+        "email": "kiranguragai@gmail.com"
     }
   ],
   "autoload": {
     "psr-4": {
-      "BoundedContext\\Laravel\\": "src/Laravel/"
+      "BoundedContext\\": "src/Application/",
+      "BoundedContext\\Laravel\\": "src/Infrastructure/Laravel/"
     }
-  }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BoundedContext\\Tests\\": "tests/"
+    }
+  },
+
+  "minimum-stability": "dev"
 }
