@@ -109,6 +109,8 @@ class Event implements \BoundedContext\Contracts\Sourced\Log\Event
             return null;
         }
 
-        return $this->snapshot_transformer->fromPopo($event);
+        $popo_snapshot = $this->json_serializer->deserialize($event->snapshot);
+
+        return $this->snapshot_transformer->fromPopo($popo_snapshot);
     }
 }
